@@ -1,0 +1,3 @@
+from getDataETree import *
+
+fetchAnimeList()
