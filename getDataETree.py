@@ -2,6 +2,9 @@
 
 import requests
 import xml.etree.ElementTree as ET
+import urllib2 as urllib
+import io
+from PIL import Image, ImageTk
 
 
 def fetchAnimeList(user='cloudninek'):
@@ -34,3 +37,19 @@ def fetchAnimeList(user='cloudninek'):
         animeData.append(tempList)
 
     return userData, animeData
+
+
+def getUserImage(userObj):
+    """ return ImageTk object associated with user id"""
+
+    # Remember to add .jpg after user id
+    userImgStr = ("http://cdn.myanimelist.net/images/userimages/" +
+                  userObj.id + ".jpg")
+
+    image = urllib.urlopen(userImgStr).read()
+    imgData = io.BytesIO(image)
+    userImg = Image.open(imgData)
+
+    userImg = ImageTk.PhotoImage(userImg)
+
+    return userImg

@@ -20,10 +20,13 @@ def main():
     user2_Data = userClassCreator(user2_userData)
     user2_List = animeClassCreator(user2_animeData)
 
+    count = 0
     for item1 in user1_List:
         for item2 in user2_List:
             if item1.title == item2.title:
+                count += 1
                 print item1.title
+    print "\nYou and %s have %d titles in common" % (user2, count)
 
 if __name__ == "__main__":
     main()
